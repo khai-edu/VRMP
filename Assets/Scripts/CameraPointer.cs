@@ -32,11 +32,6 @@ public class CameraPointer : MonoBehaviour
 	/// </summary>
 	public void Update()
 	{
-		if (!Google.XR.Cardboard.Api.HasDeviceParams())
-		{
-			return;
-		}
-
 		// Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
 		// at.
 		RaycastHit hit;
