@@ -39,6 +39,7 @@ public class CardboardStartup : MonoBehaviour
 		if (!Api.HasDeviceParams())
 		{
 			Api.ScanDeviceParams();
+			QualitySettings.vSyncCount = 1;
 		}
 	}
 

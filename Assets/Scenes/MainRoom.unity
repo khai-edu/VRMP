@@ -519,16 +519,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1577463257235557667, guid: 649012376f1ef6d43836225b4a1f8fa5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.36144
-      objectReference: {fileID: 0}
     - target: {fileID: 3518038911049095266, guid: 649012376f1ef6d43836225b4a1f8fa5, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976041014288798408, guid: 649012376f1ef6d43836225b4a1f8fa5, type: 3}
-      propertyPath: m_TrackingSpace
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7204614930819150465, guid: 649012376f1ef6d43836225b4a1f8fa5, type: 3}
@@ -565,6 +557,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8399771024380537807, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8399771024694051388, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
       propertyPath: m_Name
       value: Treasure
@@ -652,6 +648,14 @@ PrefabInstance:
     - target: {fileID: 8399771024694051389, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399771024918925247, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399771025723352934, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 424708e5e0f9e724bb8be6769817c681, type: 3}
