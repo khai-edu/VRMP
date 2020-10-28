@@ -24,6 +24,8 @@ using UnityEngine;
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
+	public GameObject Player = null;
+
 	private const float _maxDistance = 10;
 	private GameObject _gazedAtObject = null;
 	private const float _timeToSelect = 3.0f;
@@ -63,7 +65,7 @@ public class CameraPointer : MonoBehaviour
 		// Checks for screen touches.
 		if (Google.XR.Cardboard.Api.IsTriggerPressed)
 		{
-			_gazedAtObject?.SendMessage("OnPointerClick", SendMessageOptions.DontRequireReceiver);
+			_gazedAtObject?.SendMessage("OnPointerClick", Player, SendMessageOptions.DontRequireReceiver);
 		}
 
 		UpdateTimer();
@@ -84,7 +86,8 @@ public class CameraPointer : MonoBehaviour
 
 	private void OnTimerDone()
 	{
-		_gazedAtObject?.SendMessage("OnPointerClick", SendMessageOptions.DontRequireReceiver);
+		_gazedAtObject?.SendMessage("OnPointerClick", Player, SendMessageOptions.DontRequireReceiver);
+		StopTimer();
 	}
 
 	private void UpdateTimer()
@@ -94,7 +97,6 @@ public class CameraPointer : MonoBehaviour
 			_timeLeft -= Time.deltaTime;
 			if(_timeLeft <= 0)
 			{
-				_timeLeft = 0;
 				OnTimerDone();
 			}
 			UIManager.Instance.SetSlectorAmount(1 - (_timeLeft / _timeToSelect));
