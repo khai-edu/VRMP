@@ -662,6 +662,7 @@ GameObject:
   - component: {fileID: 64936179162660800}
   - component: {fileID: 23914136199674008}
   - component: {fileID: 114136108983000328}
+  - component: {fileID: 123083232}
   m_Layer: 0
   m_Name: PaintingReceiver
   m_TagString: Untagged
@@ -758,4 +759,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7846657e4f79ac942982d3b27fc0ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTexture: {fileID: 0}
+  initialTexture: {fileID: 2800000, guid: 06510e00193e96a4284482b036904deb, type: 3}
+--- !u!65 &123083232
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966253842479998}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0, y: 0, z: 0}
