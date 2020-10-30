@@ -8,10 +8,10 @@ public class PlayerSpawner : MonoBehaviour
 	private Transform SpawnPoint = null;
 
 	[SerializeField]
-	private GameObject PrefabCardboard;
+	private GameObject PrefabCardboard = null;
 
 	[SerializeField]
-	private GameObject PrefabMixedReality;
+	private GameObject PrefabMixedReality = null;
 
 	[SerializeField]
 
@@ -22,8 +22,8 @@ public class PlayerSpawner : MonoBehaviour
 			Debug.LogError("SpawnPoint is null!");
 		}
 
-		GameObject gameobject = null;
-		if(Application.platform == RuntimePlatform.Android)
+		GameObject gameobject;
+		if (Application.platform == RuntimePlatform.Android)
 		{
 			gameobject = PrefabCardboard;
 		}
