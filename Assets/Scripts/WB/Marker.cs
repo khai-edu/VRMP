@@ -34,10 +34,10 @@ public class Marker : MonoBehaviour
                 renderer.material.color = color;
             }
         }
-		else
-		{
+        else
+        {
             Debug.LogWarning("colouredParts is null!");
-		}
+        }
 
         painter.Initialize(paintReceiver);
         painter.ChangeColour(color);

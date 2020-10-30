@@ -233,7 +233,6 @@ GameObject:
   - component: {fileID: 7562564817330743673}
   - component: {fileID: 7562564817330743674}
   - component: {fileID: 7562564817330743672}
-  - component: {fileID: 7562564817330743654}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -346,18 +345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 7562564817347967699}
---- !u!114 &7562564817330743654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7562564817330743679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4b0fe7a507c46b458dc8b4791b89cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7562564817347967699
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,8 +357,9 @@ GameObject:
   - component: {fileID: 3960931417891901211}
   - component: {fileID: 5976041014288798408}
   - component: {fileID: 1133503198476124623}
+  - component: {fileID: 6513419716797843299}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Cardboard Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -437,5 +425,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd68f027e715c44aa8d097000d4cccfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6513419716797843299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562564817347967699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b0fe7a507c46b458dc8b4791b89cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
