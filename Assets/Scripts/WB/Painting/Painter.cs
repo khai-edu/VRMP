@@ -3,16 +3,16 @@
 public class Painter : MonoBehaviour
 {
     [SerializeField]
-    private PaintMode paintMode;
+    private PaintMode paintMode = PaintMode.Draw;
 
     [SerializeField]
-    private Transform paintingTransform;
+    private Transform paintingTransform = null;
 
     [SerializeField]
     private float raycastLength = 0.01f;
 
     [SerializeField]
-    private Texture2D brush;
+    private Texture2D brush = null;
 
     [SerializeField]
     private float spacing = 1f;
@@ -23,9 +23,7 @@ public class Painter : MonoBehaviour
     private PaintReceiver paintReceiver;
     private Collider paintReceiverCollider;
 
-    //private DraggableObject paintingObject;
-
-    private Stamp stamp;
+    private Stamp stamp = null;
 
     private Color color;
 
@@ -33,15 +31,44 @@ public class Painter : MonoBehaviour
 
     public void Initialize(PaintReceiver newPaintReceiver)
     {
+
+        if (brush == null)
+        {
+            Debug.LogError("Initialization error: brush is null!");
+            return;
+        }
+
         stamp = new Stamp(brush);
         stamp.mode = paintMode;
 
+        if (newPaintReceiver == null)
+        {
+
+            Debug.LogError("Initialization error: newPaintReceiver is null!");
+            return;
+        }
+
         paintReceiver = newPaintReceiver;
         paintReceiverCollider = newPaintReceiver.GetComponent<Collider>();
+        if(paintReceiverCollider == null)
+		{
+            Debug.LogError("Initialization error: Collier not found in paint receiver!");
+		}
+
+        if (paintingTransform == null)
+        {
+            Debug.LogError("Initialization error: paintingTransform is null!");
+        }
     }
 
     private void Update()
     {
+        if (paintingTransform == null)
+            return;
+
+        if (paintReceiverCollider == null)
+            return;
+
         currentAngle = -transform.rotation.eulerAngles.z;
 
         Ray ray = new Ray(paintingTransform.position, paintingTransform.forward);

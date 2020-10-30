@@ -8,17 +8,17 @@ public class Marker : MonoBehaviour
     private Quaternion starRotation;
 
     [SerializeField]
-    private Color color;
+    private Color color = Color.white;
 
     [SerializeField]
-    private MeshRenderer[] colouredParts;
+    private MeshRenderer[] colouredParts = null;
 
 
     [SerializeField]
-    private Painter painter;
+    private Painter painter = null;
 
     [SerializeField]
-    private PaintReceiver paintReceiver;
+    private PaintReceiver paintReceiver = null;
 
     protected void Awake()
     {
@@ -27,10 +27,17 @@ public class Marker : MonoBehaviour
         startPosition = mRigidbody.position;
         starRotation = mRigidbody.rotation;
 
-        foreach (MeshRenderer renderer in colouredParts)
+        if (colouredParts != null)
         {
-            renderer.material.color = color;
+            foreach (MeshRenderer renderer in colouredParts)
+            {
+                renderer.material.color = color;
+            }
         }
+		else
+		{
+            Debug.LogWarning("colouredParts is null!");
+		}
 
         painter.Initialize(paintReceiver);
         painter.ChangeColour(color);

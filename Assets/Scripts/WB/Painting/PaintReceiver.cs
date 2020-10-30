@@ -6,13 +6,12 @@ using System.IO;
 public class PaintReceiver : MonoBehaviour
 {
     [SerializeField]
-    private Texture2D initialTexture;
+    private Texture2D initialTexture = null;
 
     private Texture2D texture;
     private Texture2D newTexture;
 	private Color32[] originalTexture;
 	private Color32[] currentTexture;
-    private float currentStampRotation = 0f;
 
 	private int textureWidth;
 	private int textureHeight;
@@ -21,6 +20,11 @@ public class PaintReceiver : MonoBehaviour
 
     private void Awake()
     {
+        if (initialTexture == null)
+		{
+            Debug.LogError("initialTexture is null!");
+		}
+
         texture = GetComponent<MeshRenderer>().material.mainTexture as Texture2D;
 
         textureWidth = texture.width;
