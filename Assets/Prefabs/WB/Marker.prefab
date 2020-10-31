@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 33469745492096700}
   - component: {fileID: 23452057419643822}
   - component: {fileID: 4589589912598427227}
+  - component: {fileID: 5217533035604015033}
   m_Layer: 0
   m_Name: PaintingHead
   m_TagString: Untagged
@@ -343,6 +344,19 @@ MonoBehaviour:
   raycastLength: 0.01
   brush: {fileID: 2800000, guid: cbf7af39011c0214083f03f18676ebde, type: 3}
   spacing: 1
+--- !u!65 &5217533035604015033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634699966999316}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000004, y: 1, z: 1.2123799}
+  m_Center: {x: 0.000030500722, y: 0, z: 0.106193624}
 --- !u!1 &1671179696074738
 GameObject:
   m_ObjectHideFlags: 0

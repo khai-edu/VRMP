@@ -1,0 +1,9 @@
+diff a/Assets/Scripts/WB/Painting/Painter.cs b/Assets/Scripts/WB/Painting/Painter.cs	(rejected hunks)
+@@ -0,6 +0,7 @@
+     private Transform paintingTransform;
+ 
+     [SerializeField]
++    private float raycastLength = 0.01f;
+ 
+     [SerializeField]
+     private Texture2D brush;

@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
+
 public class Painter : MonoBehaviour
 {
+
     [SerializeField]
     private PaintMode paintMode = PaintMode.Draw;
 
@@ -16,7 +18,7 @@ public class Painter : MonoBehaviour
 
     [SerializeField]
     private float spacing = 1f;
-    
+
     private float currentAngle = 0f;
     private float lastAngle = 0f;
 
@@ -31,6 +33,7 @@ public class Painter : MonoBehaviour
 
     public void Initialize(PaintReceiver newPaintReceiver)
     {
+        //painterCollider = GetComponent<Collider>();
 
         if (brush == null)
         {
@@ -49,7 +52,7 @@ public class Painter : MonoBehaviour
         }
 
         paintReceiver = newPaintReceiver;
-        paintReceiverCollider = newPaintReceiver.GetComponent<Collider>();
+        paintReceiverCollider = newPaintReceiver.GetComponent<MeshCollider>();
         if(paintReceiverCollider == null)
 		{
             Debug.LogError("Initialization error: Collier not found in paint receiver!");
@@ -74,27 +77,34 @@ public class Painter : MonoBehaviour
         Ray ray = new Ray(paintingTransform.position, paintingTransform.forward);
         RaycastHit hit;
 
+        //Physics.sp``
+        
         Debug.DrawRay(ray.origin, ray.direction * raycastLength);
 
-        if (paintReceiverCollider.Raycast(ray, out hit, raycastLength))
-        {
-            if (lastDrawPosition.HasValue && lastDrawPosition.Value != hit.textureCoord)
+         //if (Physics.SphereCast(ray, 0.01f, out hit, 0.1f))
+        //{
+        //if (hit.collider == paintReceiverCollider)
+            if (paintReceiverCollider.Raycast(ray, out hit, raycastLength))
             {
-                paintReceiver.DrawLine(stamp, lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle, color, spacing);
-            }
-            else
-            {
-                paintReceiver.CreateSplash(hit.textureCoord, stamp, color, currentAngle);
-            }
+                if (lastDrawPosition.HasValue && lastDrawPosition.Value != hit.textureCoord)
+                {
+                    paintReceiver.DrawLine(stamp, lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle, color, spacing);
+                }
+                else
+                {
+                    paintReceiver.CreateSplash(hit.textureCoord, stamp, color, currentAngle);
+                }
 
-            lastAngle = currentAngle;
+                lastAngle = currentAngle;
 
-            lastDrawPosition = hit.textureCoord;
-        }
+                lastDrawPosition = hit.textureCoord;
+            }
+       // }
         else
         {
             lastDrawPosition = null;
         }
+
     }
 
     public void ChangeColour(Color newColor)

@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1133503198476124623}
   - component: {fileID: 6513419716797843299}
   m_Layer: 0
-  m_Name: Cardboard Player
+  m_Name: CardboardPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CameraFloorOffsetObject: {fileID: 7433295658756368093}
   m_RequestedTrackingMode: 0
-  m_TrackingOriginMode: 1
+  m_TrackingOriginMode: 2
   m_TrackingSpace: 0
   m_CameraYOffset: 1.36144
 --- !u!114 &1133503198476124623
