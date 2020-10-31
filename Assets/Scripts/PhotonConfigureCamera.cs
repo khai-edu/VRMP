@@ -46,7 +46,7 @@ public class PhotonConfigureCamera : MonoBehaviour
 
 			if (Camera.TryGetComponent(out TrackedPoseDriver trackedPoseDriver))
 			{
-				trackedPoseDriver.enabled = isLocalClient;
+				trackedPoseDriver.enabled = isLocalClient;	
 			}
 		}
 
