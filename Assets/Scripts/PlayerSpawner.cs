@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
@@ -14,6 +15,9 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 
 	[SerializeField]
 	private GameObject PrefabMixedReality = null;
+
+	[SerializeField]
+	private bool AutoUpdateTeleportationProvider = true;
 
 #if UNITY_EDITOR
 	enum DebugMode
@@ -83,10 +87,28 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 			{
 				Instantiate(gameobject, SpawnPoint.position, Quaternion.identity);
 			}
+
+			if(AutoUpdateTeleportationProvider)
+			{
+				UpdateTeleportationProvider();
+			}	
 		}
 		else
 		{
 			Debug.LogError("No one to spawn!");
+		}
+	}
+
+	void UpdateTeleportationProvider()
+	{
+		TeleportationArea[] TeleportationAreas = Object.FindObjectsOfType<TeleportationArea>();
+		TeleportationProvider provider = Object.FindObjectOfType<TeleportationProvider>();
+		if(provider != null && TeleportationAreas.Length != 0)
+		{
+			foreach(TeleportationArea area in TeleportationAreas)
+			{
+				area.teleportationProvider = provider;
+			}
 		}
 	}
 }
