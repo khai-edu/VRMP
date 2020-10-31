@@ -9,9 +9,22 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 	[SerializeField]
 	private string gameVersion = "1.0.0";
 
+	public static NetworkManager Instance { get; private set; }
+
 	private void Awake()
 	{
-		PhotonNetwork.AutomaticallySyncScene = true;
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(this.gameObject);
+
+			PhotonNetwork.AutomaticallySyncScene = true;
+		}
+		else
+		{
+			Debug.LogWarning("There should only be one manager");
+			Destroy(this.gameObject);
+		}
 	}
 
 	// Start is called before the first frame update
