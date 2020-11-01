@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 4442004332207413724}
   - component: {fileID: 4575924874461736340}
   - component: {fileID: 7653062077417685776}
+  - component: {fileID: 8258222447401361870}
   m_Layer: 0
   m_Name: Custom Left Hand Model
   m_TagString: Untagged
@@ -393,11 +394,12 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   observableSearch: 2
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4575924874461736340}
   - {fileID: 7653062077417685776}
+  - {fileID: 8258222447401361870}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -440,6 +442,18 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &8258222447401361870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109434732395284509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddaaa5094d804c49908ecdf5abdf7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &109434732395284511
 GameObject:
   m_ObjectHideFlags: 0
