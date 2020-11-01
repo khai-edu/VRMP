@@ -1399,7 +1399,7 @@ MonoBehaviour:
   PrefabCardboard: {fileID: 7562564817347967699, guid: 649012376f1ef6d43836225b4a1f8fa5, type: 3}
   PrefabMixedReality: {fileID: 5985402788840542820, guid: b6179860bba6d1f4f80a4e9e0151731a, type: 3}
   AutoUpdateTeleportationProvider: 1
-  ForceDebugMode: 1
+  ForceDebugMode: 0
 --- !u!4 &1636703112
 Transform:
   m_ObjectHideFlags: 0
