@@ -53,7 +53,15 @@ public class HandPresence : MonoBehaviour
                 Debug.Log("Did not find corresponding controller model");
             }
 
-            spawnedHandModel = Instantiate(handModelPrefab, transform);
+            if (PhotonNetwork.InRoom)
+            {
+                spawnedHandModel = PhotonNetwork.Instantiate(handModelPrefab.name, transform.position, transform.rotation);
+            }
+            else
+            {
+                spawnedHandModel = Instantiate(handModelPrefab, transform);
+            }
+
             handAnimator = spawnedHandModel.GetComponent<Animator>();
         }
     }
