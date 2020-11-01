@@ -300,6 +300,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 3145242304952749234}
+  - {fileID: 4912896615766221700}
   - {fileID: 3737914127639806722}
   - {fileID: 5796406549779609752}
   - {fileID: 5833015301014033544}
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_PoseProvider: {fileID: 0}
   m_ControllerNode: 5
   m_SelectUsage: 2
-  m_ActivateUsage: 2
+  m_ActivateUsage: 3
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
   m_ModelPrefab: {fileID: 0}
