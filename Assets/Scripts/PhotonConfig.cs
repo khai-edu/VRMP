@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SpatialTracking;
 
 [RequireComponent(typeof(PhotonView))]
-public class PhotonConfigureCamera : MonoBehaviour
+public class PhotonConfig : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject Camera;
@@ -13,11 +13,21 @@ public class PhotonConfigureCamera : MonoBehaviour
 	[SerializeField]
 	private GameObject[] HideGameObjectsForMe;
 
+	[SerializeField]
+	private GameObject[] HideGameObjectsForYou;
+
+	private bool IsKinematicDefault = false;
+
 	private PhotonView photonView;
 
 	private void Awake()
 	{
 		photonView = GetComponent<PhotonView>();
+
+		if (TryGetComponent(out Rigidbody rigidbody))
+		{
+			IsKinematicDefault = rigidbody.isKinematic;
+		}
 
 		ConfigureComponents();
 	}
@@ -50,11 +60,31 @@ public class PhotonConfigureCamera : MonoBehaviour
 			}
 		}
 
+		if (TryGetComponent(out Rigidbody rigidbody))
+		{
+			if (!isLocalClient)
+			{
+				rigidbody.isKinematic = true;
+			}
+			else
+			{
+				rigidbody.isKinematic = IsKinematicDefault;
+			}
+		}
+
 		foreach(GameObject obg in HideGameObjectsForMe)
 		{
 			if(obg != null && obg.TryGetComponent(out MeshRenderer mesh))
 			{
 				mesh.enabled = !isLocalClient;
+			}
+		}
+
+		foreach (GameObject obg in HideGameObjectsForYou)
+		{
+			if (obg != null && obg.TryGetComponent(out MeshRenderer mesh))
+			{
+				mesh.enabled = isLocalClient;
 			}
 		}
 	}

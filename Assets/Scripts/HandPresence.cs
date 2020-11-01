@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -38,7 +39,14 @@ public class HandPresence : MonoBehaviour
             GameObject prefab = controllerPrefabs.Find(controller => controller.name == targetDevice.name);
             if (prefab)
             {
-                spawnedController = Instantiate(prefab, transform);
+                if (PhotonNetwork.InRoom)
+                {
+                    PhotonNetwork.Instantiate(prefab.name, transform.position, transform.rotation);
+                }
+                else
+                {
+                    Instantiate(prefab, transform);
+                }
             }
             else
             {

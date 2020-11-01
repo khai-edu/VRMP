@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00d73391ccb0744a9d262e5850d6380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameVersion: 1.0.0
+  gameVersion: 1.0.1
 --- !u!4 &605769115
 Transform:
   m_ObjectHideFlags: 0
@@ -676,17 +676,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1929334628513638968, guid: c783eba12ef8227499a56c7ca95afa6c, type: 3}
   m_PrefabInstance: {fileID: 606967997}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &676670283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2715552856764613901, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
+--- !u!54 &676670286 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 54184319975326730, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
   m_PrefabInstance: {fileID: 2084708557}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &716109532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,10 +1759,18 @@ PrefabInstance:
     - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
       propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 676670283}
+      objectReference: {fileID: 0}
     - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
+      propertyPath: DisableComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
+      propertyPath: DisableComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 676670286}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}

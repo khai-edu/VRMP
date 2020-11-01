@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5910299806062169675}
   - component: {fileID: 2818401824536595663}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,9 +586,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7562564817347967699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd2c87753a5ed44f80e73e31c102825, type: 3}
+  m_Script: {fileID: 11500000, guid: 2edf4c83e0fa4a0459545152f3808262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 7562564817330743679}
   HideGameObjectsForMe:
   - {fileID: 545738064917353376}
+  HideGameObjectsForYou:
+  - {fileID: 6967883229274803203}
