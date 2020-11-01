@@ -26,9 +26,9 @@ public class CameraPointer : MonoBehaviour
 {
 	public GameObject Player = null;
 
-	private const float _maxDistance = 10;
+	private const float _maxDistance = 100;
 	private GameObject _gazedAtObject = null;
-	private const float _timeToSelect = 3.0f;
+	private const float _timeToSelect = 1.5f;
 	private const string _interactableObjectTag = "InteractableObject";
 
 	private float _timeLeft = 0.0f;
