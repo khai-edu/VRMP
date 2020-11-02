@@ -1,22 +1,48 @@
 ﻿using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PhotonParentView : MonoBehaviourPun, IPunObservable
 {
-	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	static string nullstring = ":null";
+
+	private bool debugStopSpam = false;
+
+	public void OnPhotonSerializeView(PhotonStream _stream, PhotonMessageInfo _info)
 	{
-		if (stream.IsWriting)
+		if (_stream.IsWriting)
 		{
-			string parentName = this.gameObject.transform.parent.name;
-			stream.SendNext(parentName);
+			Transform _transform = gameObject.transform;
+			if (_transform.parent)
+			{
+				string parentName = _transform.parent.GetFullName();
+				_stream.SendNext(parentName);
+			}
+			else
+			{
+				_stream.SendNext(nullstring);
+			}
 		}
 		else
 		{
-			string parentName = (string)stream.ReceiveNext();
-			var parent = GameObject.Find(parentName);
-			this.gameObject.transform.SetParent(parent.transform);
+			string parentName = (string)_stream.ReceiveNext();
+			if (parentName != nullstring)
+			{
+				var parent = GameObject.Find(parentName);
+				if (parent != null)
+				{
+					debugStopSpam = false;
+					gameObject.transform.SetParent(parent.transform);
+				}
+				else if (!debugStopSpam)
+				{
+					debugStopSpam = true;
+					Debug.LogErrorFormat("Cannot find GameObject: \"{0}\". Scene out of sync?", parentName);
+				}
+			}
+			else
+			{
+				gameObject.transform.SetParent(null);
+			}
 		}
 	}
 }
