@@ -631,7 +631,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   observableSearch: 2
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 2553412129046739479}
@@ -670,3 +670,4 @@ MonoBehaviour:
   - {fileID: 545738064917353376}
   HideGameObjectsForYou:
   - {fileID: 6967883229274803203}
+  DisableMonoBegaviur: []
