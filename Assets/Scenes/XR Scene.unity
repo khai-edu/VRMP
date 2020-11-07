@@ -128,17 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 154d2e4cb6beab1458fb4ee20c80e360, type: 3}
   m_PrefabInstance: {fileID: 1117802234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &123083228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114136108983000328, guid: c3809fbd4094f894cab1d46ff7ee4724, type: 3}
-  m_PrefabInstance: {fileID: 560643259}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7846657e4f79ac942982d3b27fc0ed58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &134907727
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,11 +669,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1929334628513638968, guid: c783eba12ef8227499a56c7ca95afa6c, type: 3}
   m_PrefabInstance: {fileID: 606967997}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &676670286 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 54184319975326730, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-  m_PrefabInstance: {fileID: 2084708557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &716109532
 GameObject:
@@ -1392,7 +1376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1569559347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2032,38 +2016,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 2539851411517802715, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: paintReceiver
-      value: 
-      objectReference: {fileID: 123083228}
-    - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableComponents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 676670286}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
 --- !u!4 &2137774090 stripped

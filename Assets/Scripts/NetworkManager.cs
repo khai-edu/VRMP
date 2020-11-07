@@ -19,6 +19,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 			DontDestroyOnLoad(this.gameObject);
 
 			PhotonNetwork.AutomaticallySyncScene = true;
+			PhotonNetwork.PrecisionForFloatSynchronization = 0.000099f;
 		}
 		else
 		{
