@@ -670,11 +670,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1929334628513638968, guid: c783eba12ef8227499a56c7ca95afa6c, type: 3}
   m_PrefabInstance: {fileID: 606967997}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &676670286 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 54184319975326730, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-  m_PrefabInstance: {fileID: 2084708557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &716109532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1569559347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2021,44 +2016,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076005279613300, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.46673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4315551433719633447, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableComponents.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 676670286}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableMonoBegaviur.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8769421316632638609, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
-      propertyPath: DisableMonoBegaviur.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4589589912598427227, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99910ef1d34853b459e158ff2cb5d109, type: 3}
 --- !u!4 &2137774090 stripped
 Transform:

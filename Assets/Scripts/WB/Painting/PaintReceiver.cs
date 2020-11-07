@@ -61,11 +61,13 @@ public class PaintReceiver : MonoBehaviour
     /// <param name="stamp">Stamp instance</param>
     /// <param name="color">Colour used to paint over - applied only if PaintMode of stamp is set to PaintOver</param>
     /// <param name="stampRotation">Rotation of stamp</param>
-    public void CreateSplash(Vector2 uvPosition, Stamp stamp, Color color, float stampRotation = 0f)
+    public bool CreateSplash(Vector2 uvPosition, Stamp stamp, Color color, float stampRotation = 0f)
     {
+        bool hasChange = false;
         stamp.SetRotation(stampRotation);
 
-		PaintOver (stamp, (Color32)color, uvPosition);
+        hasChange = PaintOver(stamp, (Color32)color, uvPosition);
+        return hasChange;
     }
 
     /// <summary>
@@ -78,8 +80,10 @@ public class PaintReceiver : MonoBehaviour
     /// <param name="endStampRotation">Rotation of stamp at the end</param>
     /// <param name="color">Colour used to paint over - applied only if PaintMode of stamp is set to PaintOver</param>
     /// <param name="spacing">The smaller the value, the more dense the line is</param>
-    public void DrawLine(Stamp stamp, Vector2 startUVPosition, Vector2 endUVPosition, float startStampRotation, float endStampRotation, Color color, float spacing)
+    public bool DrawLine(Stamp stamp, Vector2 startUVPosition, Vector2 endUVPosition, float startStampRotation, float endStampRotation, Color color, float spacing)
     {
+        bool hasChange = false;
+
         Vector2 uvDistance = endUVPosition - startUVPosition;
 
         Vector2 pixelDistance = new Vector2(Mathf.Abs(uvDistance.x) * textureWidth, Mathf.Abs(uvDistance.y) * textureHeight);
@@ -95,12 +99,16 @@ public class PaintReceiver : MonoBehaviour
             
             stamp.SetRotation(Mathf.Lerp(startStampRotation, endStampRotation, lerp));
 
-            PaintOver(stamp, color, uvPosition);
+            hasChange = PaintOver(stamp, color, uvPosition);
         }
+
+        return hasChange;
     }
 
-    private void PaintOver(Stamp stamp, Color32 color, Vector2 uvPosition)
+    private bool PaintOver(Stamp stamp, Color32 color, Vector2 uvPosition)
     {
+        bool hasChange = false;
+
         int paintStartPositionX = (int)((uvPosition.x * textureWidth) - stamp.Width / 2f);
 		int paintStartPositionY = (int)((uvPosition.y * textureHeight) - stamp.Height / 2f);
 
@@ -155,10 +163,15 @@ public class PaintReceiver : MonoBehaviour
                 newColor.b = (byte)(color.b * aChannel / 255 + textureColor.b * textureColor.a * (255 - aChannel) / (255 * 255));
                 newColor.a = (byte)(aChannel + textureColor.a * (255 - aChannel) / 255);
 
-                currentTexture[texturePosition] = newColor;
+                if (!currentTexture[texturePosition].Equals(newColor))
+                {
+                    currentTexture[texturePosition] = newColor;
+                    hasChange = true;
+                }
             }
         }
 
-        wasModified = true;
+        wasModified = hasChange;
+        return hasChange;
     }
 }
