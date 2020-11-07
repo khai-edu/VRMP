@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Painter))]
 public class Marker : MonoBehaviour
 {
     protected Rigidbody mRigidbody;
@@ -13,15 +14,16 @@ public class Marker : MonoBehaviour
     [SerializeField]
     private MeshRenderer[] colouredParts = null;
 
-
-    [SerializeField]
-    private Painter painter = null;
-
     [SerializeField]
     private PaintReceiver paintReceiver = null;
 
     protected void Awake()
     {
+        if(paintReceiver == null)
+        {
+            paintReceiver = GameObject.FindObjectOfType<PaintReceiver>();
+        }
+
         mRigidbody = GetComponent<Rigidbody>();
 
         startPosition = mRigidbody.position;
@@ -39,7 +41,14 @@ public class Marker : MonoBehaviour
             Debug.LogWarning("colouredParts is null!");
         }
 
-        painter.Initialize(paintReceiver);
-        painter.ChangeColour(color);
+        if (TryGetComponent(out Painter painter))
+        {
+            painter.Initialize(paintReceiver);
+            painter.ChangeColour(color);
+        }
+        else
+		{
+            Debug.LogError("Can't find Painter component");
+		}
     }
 }

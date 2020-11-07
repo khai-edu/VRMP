@@ -33,8 +33,6 @@ public class Painter : MonoBehaviour
 
     public void Initialize(PaintReceiver newPaintReceiver)
     {
-        //painterCollider = GetComponent<Collider>();
-
         if (brush == null)
         {
             Debug.LogError("Initialization error: brush is null!");
@@ -76,30 +74,24 @@ public class Painter : MonoBehaviour
 
         Ray ray = new Ray(paintingTransform.position, paintingTransform.forward);
         RaycastHit hit;
-
-        //Physics.sp``
         
         Debug.DrawRay(ray.origin, ray.direction * raycastLength);
 
-         //if (Physics.SphereCast(ray, 0.01f, out hit, 0.1f))
-        //{
-        //if (hit.collider == paintReceiverCollider)
-            if (paintReceiverCollider.Raycast(ray, out hit, raycastLength))
+        if (paintReceiverCollider.Raycast(ray, out hit, raycastLength))
+        {
+            if (lastDrawPosition.HasValue && lastDrawPosition.Value != hit.textureCoord)
             {
-                if (lastDrawPosition.HasValue && lastDrawPosition.Value != hit.textureCoord)
-                {
-                    paintReceiver.DrawLine(stamp, lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle, color, spacing);
-                }
-                else
-                {
-                    paintReceiver.CreateSplash(hit.textureCoord, stamp, color, currentAngle);
-                }
-
-                lastAngle = currentAngle;
-
-                lastDrawPosition = hit.textureCoord;
+                paintReceiver.DrawLine(stamp, lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle, color, spacing);
             }
-       // }
+            else
+            {
+                paintReceiver.CreateSplash(hit.textureCoord, stamp, color, currentAngle);
+            }
+
+            lastAngle = currentAngle;
+
+            lastDrawPosition = hit.textureCoord;
+        }
         else
         {
             lastDrawPosition = null;

@@ -1,11 +1,12 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SpatialTracking;
 
 [RequireComponent(typeof(PhotonView))]
-public class PhotonConfig : MonoBehaviour
+public class PhotonConfig : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
 {
 	[SerializeField]
 	private GameObject Camera;
@@ -16,14 +17,13 @@ public class PhotonConfig : MonoBehaviour
 	[SerializeField]
 	private GameObject[] HideGameObjectsForYou;
 
-	private bool IsKinematicDefault = false;
+	[SerializeField]
+	private MonoBehaviour[] DisableMonoBegaviur;
 
-	private PhotonView photonView;
+	private bool IsKinematicDefault = false;
 
 	private void Awake()
 	{
-		photonView = GetComponent<PhotonView>();
-
 		if (TryGetComponent(out Rigidbody rigidbody))
 		{
 			IsKinematicDefault = rigidbody.isKinematic;
@@ -86,6 +86,46 @@ public class PhotonConfig : MonoBehaviour
 			{
 				mesh.enabled = isLocalClient;
 			}
+		}
+
+		foreach (MonoBehaviour beh in DisableMonoBegaviur)
+		{
+			beh.enabled = !isLocalClient;
+		}
+	}
+
+	public void ChangeOwnershipOnMe()
+	{
+		if (photonView == null)
+		{
+			Debug.LogError("PhotonView is null!");
+			return;
+		}
+
+		if (photonView.OwnershipTransfer == OwnershipOption.Takeover)
+		{
+			photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+		}
+		else
+		{
+			Debug.LogError("Impossible to transfer ownership!");
+		}
+	}
+
+	public override void OnJoinedRoom()
+	{
+		ConfigureComponents();
+	}
+
+	public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
+	{
+	}
+
+	public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
+	{
+		if(targetView.ViewID == photonView.ViewID)
+		{
+			ConfigureComponents();
 		}
 	}
 }

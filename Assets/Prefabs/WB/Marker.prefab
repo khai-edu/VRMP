@@ -381,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671179696074738}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2604007}
+  m_LocalPosition: {x: 0, y: 0, z: 0.44}
   m_LocalScale: {x: 4.7619114, y: 5, z: 10.50003}
   m_Children: []
   m_Father: {fileID: 4064884222092216}
@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 136443468512779064}
   - component: {fileID: 54184319975326730}
   - component: {fileID: 2539851411517802715}
+  - component: {fileID: 1314040686476617032}
   - component: {fileID: 724360342}
   - component: {fileID: 4315551433719633447}
   - component: {fileID: 4941800920460586600}
@@ -458,7 +459,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &2539851411517802715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +476,23 @@ MonoBehaviour:
   colouredParts: []
   painter: {fileID: 4589589912598427227}
   paintReceiver: {fileID: 0}
+--- !u!114 &1314040686476617032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838284071298380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a317dab6e99bf4ca4d3c44b4df5fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintMode: 0
+  paintingTransform: {fileID: 4064884222092216}
+  raycastLength: 0.01
+  brush: {fileID: 2800000, guid: cbf7af39011c0214083f03f18676ebde, type: 3}
+  spacing: 1
 --- !u!114 &724360342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +524,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelectEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8769421316632638609}
+        m_TargetAssemblyTypeName: PhotonConfig, Assembly-CSharp
+        m_MethodName: ChangeOwnershipOnMe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSelectExit:
     m_PersistentCalls:
       m_Calls: []
@@ -565,8 +595,8 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
+  Synchronization: 1
+  OwnershipTransfer: 1
   ObservedComponents:
   - {fileID: 4941800920460586600}
   viewIdField: 0
@@ -601,6 +631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
   HideGameObjectsForMe: []
+  HideGameObjectsForYou: []
+  DisableMonoBegaviur: []
 --- !u!1 &1897782988483388
 GameObject:
   m_ObjectHideFlags: 0
