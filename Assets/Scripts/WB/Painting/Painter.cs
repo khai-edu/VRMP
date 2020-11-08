@@ -74,7 +74,7 @@ public class Painter : MonoBehaviourPun, IPunObservable
 
 	private Vector2? lastDrawPosition = null;
 
-	private const int MaxSizeCommands = 50;
+	private const int MaxSizeCommands = 10;
 	private List<DrawCommand> Commands = new List<DrawCommand>();
 	private List<DrawCommand> LastAppliedCommands = new List<DrawCommand>();
 
