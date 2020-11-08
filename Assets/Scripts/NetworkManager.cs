@@ -20,23 +20,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 			PhotonNetwork.AutomaticallySyncScene = true;
 			PhotonNetwork.PrecisionForFloatSynchronization = 0.000099f;
+
+			Connect();
 		}
 		else
 		{
-			Debug.LogWarning("There should only be one manager");
 			Destroy(this.gameObject);
 		}
-	}
-
-	// Start is called before the first frame update
-	void Start()
-	{
-		Connect();
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
 	}
 
 	public void Connect()
