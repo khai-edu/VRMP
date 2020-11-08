@@ -7,7 +7,7 @@ PlayerSettings:
   productGUID: 7551816a47613224f946bc9f5414ea50
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  AndroidEnableSustainedPerformanceMode: 0
+  AndroidEnableSustainedPerformanceMode: 1
   defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
@@ -84,7 +84,7 @@ PlayerSettings:
   useFlipModelSwapchain: 1
   resizableWindow: 0
   useMacAppStoreValidation: 0
-  macAppStoreCategory: public.app-category.games
+  macAppStoreCategory: public.vr.games
   gpuSkinning: 1
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
@@ -127,7 +127,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 4025659123477041846, guid: adc9b8342c8f8da4b9de96ee9b1ac5ad, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
