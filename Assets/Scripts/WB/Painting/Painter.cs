@@ -13,40 +13,36 @@ internal class DrawCommand
 {
 	public int ID { get; set; }
 	public DrawingCode Code { get; private set; }
-
-	public DrawCommand(DrawingCode code)
-	{
-		Code = code;
-	}
-};
-
-internal class DrawLineCommand : DrawCommand
-{
 	public Vector2 StartUVPosition { get; private set; }
 	public Vector2 EndUVPosition { get; private set; }
 	public float StartStampRotation { get; private set; }
 	public float EndStampRotation { get; private set; }
 
-	public DrawLineCommand(Vector2 startUVPosition, Vector2 endUVPosition, float startStampRotation, float endStampRotation) : base(DrawingCode.DRAWLINE)
+	public DrawCommand(DrawingCode code)
 	{
-		StartUVPosition = startUVPosition;
-		EndUVPosition = endUVPosition;
-		StartStampRotation = startStampRotation;
-		EndStampRotation = endStampRotation;
+		Code = code;
 	}
-}
 
-internal class CreateSplashCommand : DrawCommand
-{
-	public Vector2 UVPosition { get; private set; }
-	public float StampRotation { get; private set; }
-
-	public CreateSplashCommand(Vector2 uvPosition, float stampRotation) : base(DrawingCode.CREATESPLASH)
+	public static DrawCommand CreateDrawLineCommand(Vector2 startUVPosition, Vector2 endUVPosition, float startStampRotation, float endStampRotation)
 	{
-		UVPosition = uvPosition;
-		StampRotation = stampRotation;
+		DrawCommand cmd = new DrawCommand(DrawingCode.DRAWLINE);
+		cmd.StartUVPosition = startUVPosition;
+		cmd.EndUVPosition = endUVPosition;
+		cmd.StartStampRotation = startStampRotation;
+		cmd.EndStampRotation = endStampRotation;
+		return cmd;
 	}
-}
+
+	public static DrawCommand CreateCreateSplashCommand(Vector2 uvPosition, float stampRotation)
+	{
+		DrawCommand cmd = new DrawCommand(DrawingCode.CREATESPLASH);
+		cmd.StartUVPosition = uvPosition;
+		cmd.EndUVPosition = new Vector2(0.0f, 0.0f);
+		cmd.StartStampRotation = stampRotation;
+		cmd.EndStampRotation = 0.0f;
+		return cmd;
+	}
+};
 
 public class Painter : MonoBehaviourPun, IPunObservable
 {
@@ -78,7 +74,7 @@ public class Painter : MonoBehaviourPun, IPunObservable
 
 	private Vector2? lastDrawPosition = null;
 
-	private const uint MaxSizeCommands = 50;
+	private const int MaxSizeCommands = 50;
 	private List<DrawCommand> Commands = new List<DrawCommand>();
 	private List<DrawCommand> LastAppliedCommands = new List<DrawCommand>();
 
@@ -149,11 +145,11 @@ public class Painter : MonoBehaviourPun, IPunObservable
 		{
 			if (lastDrawPosition.HasValue && lastDrawPosition.Value != hit.textureCoord)
 			{
-				AddCommand(new DrawLineCommand(lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle));
+				AddCommand(DrawCommand.CreateDrawLineCommand(lastDrawPosition.Value, hit.textureCoord, lastAngle, currentAngle));
 			}
 			else
 			{
-				AddCommand(new CreateSplashCommand(hit.textureCoord, currentAngle));
+				AddCommand(DrawCommand.CreateCreateSplashCommand(hit.textureCoord, currentAngle));
 			}
 
 			lastAngle = currentAngle;
@@ -190,21 +186,13 @@ public class Painter : MonoBehaviourPun, IPunObservable
 				{
 					case DrawingCode.DRAWLINE:
 						{
-							DrawLineCommand cmd = command as DrawLineCommand;
-							if (cmd != null)
-							{
-								hasChange = paintReceiver.DrawLine(stamp, cmd.StartUVPosition, cmd.EndUVPosition, cmd.StartStampRotation, cmd.EndStampRotation, color, spacing);
-							}
+							hasChange = paintReceiver.DrawLine(stamp, command.StartUVPosition, command.EndUVPosition, command.StartStampRotation, command.EndStampRotation, color, spacing);
 						}
 						break;
 
 					case DrawingCode.CREATESPLASH:
 						{
-							CreateSplashCommand cmd = command as CreateSplashCommand;
-							if (cmd != null)
-							{
-								hasChange = paintReceiver.CreateSplash(cmd.UVPosition, stamp, color, cmd.StampRotation);
-							}
+							hasChange = paintReceiver.CreateSplash(command.StartUVPosition, stamp, color, command.StartStampRotation);
 						}
 						break;
 				}
@@ -216,6 +204,13 @@ public class Painter : MonoBehaviourPun, IPunObservable
 			}
 
 			Commands = Commands.ExceptBy(needToRemove, x => x.ID).ToList();
+
+			if (Commands.Count > MaxSizeCommands)
+			{
+				int diff = Commands.Count - MaxSizeCommands;
+				Commands.RemoveRange(0, diff);
+			}
+
 			LastAppliedCommands = Commands.GetRange(0, Commands.Count);
 		}
 	}
@@ -230,22 +225,10 @@ public class Painter : MonoBehaviourPun, IPunObservable
 			{
 				stream.SendNext(cmd.Code);
 				stream.SendNext((int)cmd.ID);
-				if (cmd.Code == DrawingCode.CREATESPLASH)
-				{
-					CreateSplashCommand cpcmd = cmd as CreateSplashCommand;
-
-					stream.SendNext(cpcmd.UVPosition);
-					stream.SendNext(cpcmd.StampRotation);
-				}
-				else if (cmd.Code == DrawingCode.DRAWLINE)
-				{
-					DrawLineCommand dlcmd = cmd as DrawLineCommand;
-
-					stream.SendNext(dlcmd.StartUVPosition);
-					stream.SendNext(dlcmd.EndUVPosition);
-					stream.SendNext(dlcmd.StartStampRotation);
-					stream.SendNext(dlcmd.EndStampRotation);
-				}
+				stream.SendNext(cmd.StartUVPosition);
+				stream.SendNext(cmd.EndUVPosition);
+				stream.SendNext(cmd.StartStampRotation);
+				stream.SendNext(cmd.EndStampRotation);
 			}
 		}
 		else
@@ -254,33 +237,33 @@ public class Painter : MonoBehaviourPun, IPunObservable
 			int count = (int)stream.ReceiveNext();
 			if(count > 0)
 			{
-				Commands.Clear();
+				List<DrawCommand> commandsFromOwner = new List<DrawCommand>();
 
 				for(int i = 0; i < count; ++i)
 				{
 					DrawingCode code = (DrawingCode)stream.ReceiveNext();
 					int ID = (int)stream.ReceiveNext();
+					Vector2 startUvpos = (Vector2)stream.ReceiveNext();
+					Vector2 endUvpos = (Vector2)stream.ReceiveNext();
+					float r1 = (float)stream.ReceiveNext();
+					float r2 = (float)stream.ReceiveNext();
+
 					if (code == DrawingCode.CREATESPLASH)
 					{
-						Vector2 uvpos = (Vector2)stream.ReceiveNext();
-						float r = (float)stream.ReceiveNext();
-
-						CreateSplashCommand cpcmd = new CreateSplashCommand(uvpos, r);
-						cpcmd.ID = ID;
-						Commands.Add(cpcmd);
+						DrawCommand cmd = DrawCommand.CreateCreateSplashCommand(startUvpos, r1);
+						cmd.ID = ID;
+						commandsFromOwner.Add(cmd);
 					}
 					else if (code == DrawingCode.DRAWLINE)
 					{
-						Vector2 startUvpos = (Vector2)stream.ReceiveNext();
-						Vector2 endUvpos = (Vector2)stream.ReceiveNext();
-						float r1 = (float)stream.ReceiveNext();
-						float r2 = (float)stream.ReceiveNext();
-
-						DrawLineCommand dlcmd = new DrawLineCommand(startUvpos, endUvpos, r1, r2);
-						dlcmd.ID = ID;
-						Commands.Add(dlcmd);
+						DrawCommand cmd = DrawCommand.CreateDrawLineCommand(startUvpos, endUvpos, r1, r2);
+						cmd.ID = ID;
+						commandsFromOwner.Add(cmd);
 					}
 				}
+
+				IEnumerable<DrawCommand> newCommands = commandsFromOwner.ExceptBy(Commands, x => x.ID);
+				Commands.AddRange(newCommands);
 			}
 		}
 	}
