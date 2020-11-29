@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Photon.Pun;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviourPun
 {
 	public static UIManager Instance { get; set; }
 
 	[SerializeField]
-	GameObject Selector = null;
+	public GameObject Selector = null;
 
 	void Awake()
 	{
-		if(Instance == null)
+		if (Instance == null)
 		{
 			Instance = this;
 		}
@@ -23,18 +24,6 @@ public class UIManager : MonoBehaviour
 		}
 		ShowSelector(false);
 		SetSlectorAmount(0.0f);
-	}
-
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 
 	public void ShowSelector(bool value)

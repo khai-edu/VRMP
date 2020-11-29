@@ -28,6 +28,9 @@ public class CardboardStartup : MonoBehaviour
 {
 	private PhotonView photonView;
 
+	[SerializeField]
+	public GameObject Selector = null;
+
 	private void Awake()
 	{
 		photonView = GetComponent<PhotonView>();
@@ -76,6 +79,11 @@ public class CardboardStartup : MonoBehaviour
 			if (Api.HasNewDeviceParams())
 			{
 				Api.ReloadDeviceParams();
+			}
+
+			if(Selector != null)
+			{
+				UIManager.Instance.Selector = Selector;
 			}
 		}
 	}

@@ -258,7 +258,6 @@ GameObject:
   - component: {fileID: 2460429531897892940}
   - component: {fileID: 3493270662788896541}
   - component: {fileID: 6080209912526008707}
-  - component: {fileID: 2255434804938030410}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -347,19 +346,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2255434804938030410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6967883229274803203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a995cda52c9bf9f488fe3c886dec2c11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selector: {fileID: 516511064656485020}
 --- !u!1 &7433295658756368093
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd68f027e715c44aa8d097000d4cccfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Selector: {fileID: 516511064656485020}
 --- !u!114 &6513419716797843299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,4 +657,6 @@ MonoBehaviour:
   - {fileID: 545738064917353376}
   HideGameObjectsForYou:
   - {fileID: 6967883229274803203}
-  DisableMonoBegaviur: []
+  DisableMonoBegaviurForMe: []
+  DisableMonoBegaviurForYou:
+  - {fileID: 7562564817330743672}

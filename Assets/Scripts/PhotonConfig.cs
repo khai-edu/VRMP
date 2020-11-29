@@ -18,7 +18,10 @@ public class PhotonConfig : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
 	private GameObject[] HideGameObjectsForYou;
 
 	[SerializeField]
-	private MonoBehaviour[] DisableMonoBegaviur;
+	private MonoBehaviour[] DisableMonoBegaviurForMe;
+
+	[SerializeField]
+	private MonoBehaviour[] DisableMonoBegaviurForYou;
 
 	private bool IsKinematicDefault = false;
 
@@ -88,9 +91,14 @@ public class PhotonConfig : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
 			}
 		}
 
-		foreach (MonoBehaviour beh in DisableMonoBegaviur)
+		foreach (MonoBehaviour beh in DisableMonoBegaviurForMe)
 		{
 			beh.enabled = !isLocalClient;
+		}
+
+		foreach (MonoBehaviour beh in DisableMonoBegaviurForYou)
+		{
+			beh.enabled = isLocalClient;
 		}
 	}
 
