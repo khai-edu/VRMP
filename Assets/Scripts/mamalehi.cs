@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class mamalehi : MonoBehaviourPun
+public class mamalehi : MonoBehaviourPun, IPunObservable
 {
     // Start is called before the first frame update
     void Start()
