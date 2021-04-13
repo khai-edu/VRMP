@@ -136,4 +136,12 @@ public class PhotonConfig : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
 			ConfigureComponents();
 		}
 	}
+
+	void IPunOwnershipCallbacks.OnOwnershipTransferFailed(PhotonView targetView, Player requestingPlayer)
+	{
+		if (targetView.ViewID == photonView.ViewID)
+		{
+			ConfigureComponents();
+		}
+	}
 }

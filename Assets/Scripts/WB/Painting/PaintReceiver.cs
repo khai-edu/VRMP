@@ -49,7 +49,6 @@ public class PaintReceiver : MonoBehaviour
         {
             newTexture.SetPixels32(currentTexture);
             newTexture.Apply();
-
             wasModified = false;
         }
     }
@@ -152,7 +151,10 @@ public class PaintReceiver : MonoBehaviour
                 int texturePosition = paintStartPositionXClamped + x + (paintStartPositionYClamped + y) * textureWidth;
 
                 if (stamp.mode == PaintMode.Erase)
+                {
                     color = originalTexture[texturePosition];
+                    hasChange = true;
+                }
 
                 aChannel = (int)(alpha * 255f);
 
@@ -171,7 +173,7 @@ public class PaintReceiver : MonoBehaviour
             }
         }
 
-        wasModified = hasChange;
+        wasModified |= hasChange;
         return hasChange;
     }
 }

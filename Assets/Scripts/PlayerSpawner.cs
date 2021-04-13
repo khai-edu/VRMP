@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
 	[SerializeField]
-	private Transform SpawnPoint = null;
+	private Transform[] SpawnPoints;
 
 	[SerializeField]
 	private GameObject PrefabCardboard = null;
@@ -19,6 +19,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 	[SerializeField]
 	private bool AutoUpdateTeleportationProvider = true;
 
+	private int index_spawn;
 #if UNITY_EDITOR
 	enum DebugMode
 	{
@@ -46,6 +47,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 
 	void Spawn()
 	{
+		Transform SpawnPoint = SpawnPoints
 		if (SpawnPoint == null)
 		{
 			Debug.LogError("SpawnPoint is null!");
